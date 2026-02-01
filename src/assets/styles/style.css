@@ -19,26 +19,25 @@
 }
 
 html.dark {
-  --app-bg-primary: #1f2937;
-  --app-bg-secondary: #24282e;
+  --app-bg-primary: #1a2029;
+  --app-bg-secondary: #222832;
   --app-text-primary: #ffffff;
   --app-text-secondary: #a8a8a8;
+  --app-bg-third: #222832ce;
 
-  --el-bg-color: #1f2937;
-  --el-bg-color-overlay: #24282e;
+  --el-bg-color: #1a2029;
+  --el-bg-color-overlay: #1a2029;
   --el-text-color-primary: #f1f5f9;
   --el-text-color-regular: #cbd5e1;
   --el-border-color: #334155;
   --el-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
-  --app-bg-third: #24282e;
-
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--app-bg-primary);
-  color: var(--app-text-primary);
+  color: var(--app-text-primary) !important;
   transition:
     background-color 0.3s,
     color 0.3s;

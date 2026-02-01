@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/modules/home/pages/NotFoundPage.vue'),
+    component: () => import('@/modules/auth/pages/NotFoundPage.vue'),
     meta: { layout: 'empty' },
   },
 ]

@@ -1,7 +1,29 @@
 <template>
-  <div class="p-10">
-    <el-button type="primary">Botón Element Plus</el-button>
-
-    <div class="mt-6 text-xl text-blue-600">Home funcionando 🚀</div>
+  <div class="common-layout">
+    <el-container>
+      <el-container>
+        <el-aside width="200px"><p>Aside</p></el-aside>
+        <el-container>
+          <el-main><MainSection /></el-main>
+          <el-footer><p>Footer</p></el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
+
+<script setup>
+import MainSection from "../components/MainSection.vue"
+</script>
+
+<style scoped>
+.el-footer {
+  background-color: var(--app-bg-secondary);
+  text-align: center;
+}
+.el-aside {
+  background-color: var(--app-bg-secondary);
+  text-align: center;
+}
+
+</style>
