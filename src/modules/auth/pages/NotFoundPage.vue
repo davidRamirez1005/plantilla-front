@@ -29,13 +29,13 @@ const goHome = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--app-bg-third) 0%, var(--app-bg-secondary) 100%);
   padding: 20px;
 }
 
 .not-found-content {
   text-align: center;
-  color: white;
+  color: var(--el-text-color-primary);
 }
 
 .error-code {
