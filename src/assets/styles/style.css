@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --app-bg-primary: #ffffff;
+  --app-bg-secondary: #f9fafb;
+  --app-text-primary: #1f2937;
+  --app-text-secondary: #6b7280;
+  --app-bg-third: #e4ebf1;
+}
+
+html.dark {
+  --app-bg-primary: #1f2937;
+  --app-bg-secondary: #24282e;
+  --app-text-primary: #ffffff;
+  --app-text-secondary: #a8a8a8;
+
+  --el-bg-color: #1f2937;
+  --el-bg-color-overlay: #24282e;
+  --el-text-color-primary: #f1f5f9;
+  --el-text-color-regular: #cbd5e1;
+  --el-border-color: #334155;
+  --el-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+  --app-bg-third: #24282e;
+
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--app-bg-primary);
+  color: var(--app-text-primary);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}

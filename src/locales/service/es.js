@@ -1,0 +1,51 @@
+export default {
+  loading: {
+    default: "Cargando...",
+    processing: "Procesando...",
+    saving: "Guardando...",
+    deleting: "Eliminando...",
+    updating: "Actualizando...",
+    loading_data: "Cargando datos...",
+    uploading: "Subiendo archivo...",
+    downloading: "Descargando...",
+  },
+  notifications: {
+    success: {
+      title: "Éxito",
+      default: "Operación completada exitosamente",
+      saved: "Guardado correctamente",
+      updated: "Actualizado correctamente",
+      deleted: "Eliminado correctamente",
+      created: "Creado correctamente",
+    },
+    error: {
+      title: "Error",
+      default: "Ha ocurrido un error",
+      server: "Error del servidor",
+      network: "Error de conexión",
+      validation: "Error de validación",
+      not_found: "Recurso no encontrado",
+      unauthorized: "No autorizado",
+      forbidden: "Acceso denegado",
+    },
+    warning: {
+      title: "Advertencia",
+      default: "Atención requerida",
+    },
+    info: {
+      title: "Información",
+      default: "Información",
+    },
+  },
+  navbar: {
+    home: "Inicio",
+    about: "Nosotros",
+    contact: "Contacto",
+    start: "Comenzar",
+  },
+  settings: {
+    darkMode: "Modo Oscuro",
+    lightMode: "Modo Claro",
+    language: "Idioma",
+  },
+}
