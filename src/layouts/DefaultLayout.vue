@@ -37,7 +37,7 @@ const toggleSidebar = () => {
 }
 
 .el-aside {
-  background-color: #304156;
+  background-color: var(--background-color-sidebar);
   transition: width 0.3s;
 }
 

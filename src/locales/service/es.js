@@ -47,5 +47,10 @@ export default {
     darkMode: "Modo Oscuro",
     lightMode: "Modo Claro",
     language: "Idioma",
+    profile: "Perfil",
+    settings: "Configuración",
+    logout: "Cerrar Sesión",
+    english: "Inglés",
+    spanish: "Español",
   },
 }

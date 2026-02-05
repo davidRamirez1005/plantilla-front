@@ -13,8 +13,7 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>Perfil</el-dropdown-item>
-            <el-dropdown-item>Configuración</el-dropdown-item>
+            <el-dropdown-item command="profile">{{ t("settings.profile") }}</el-dropdown-item>
             <el-dropdown-item divided command="toggleTheme" :icon="isDark ? Sunny : Moon">
               {{ isDark ? t("settings.lightMode") : t("settings.darkMode") }}
             </el-dropdown-item>
@@ -23,16 +22,16 @@
               :icon="currentLocale === 'es' ? Check : ''"
               :disabled="currentLocale === 'es'"
             >
-              Español
+              {{ t("settings.spanish") }}
             </el-dropdown-item>
             <el-dropdown-item
               command="en"
               :icon="currentLocale === 'en' ? Check : ''"
               :disabled="currentLocale === 'en'"
             >
-              English
+              {{ t("settings.english") }}
             </el-dropdown-item>
-            <el-dropdown-item divided>Cerrar Sesión</el-dropdown-item>
+            <el-dropdown-item divided>{{ t("settings.logout") }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -43,11 +42,12 @@
 <script setup>
 import { ref, onMounted, computed, getCurrentInstance } from "vue"
 import { useI18n } from "vue-i18n"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { Expand, Bell, Moon, Sunny, Check } from "@element-plus/icons-vue"
 import { toggleDarkMode, setupElementPlus } from "@/plugins/element-plus"
 
 const { locale, t } = useI18n()
+const router = useRouter()
 const isDark = ref(false)
 const currentLocale = ref("es")
 
@@ -69,7 +69,9 @@ onMounted(() => {
 })
 
 const handleCommand = (command) => {
-  if (command === "toggleTheme") {
+  if (command === "profile") {
+    router.push("/settings/profile")
+  } else if (command === "toggleTheme") {
     isDark.value = !isDark.value
     localStorage.setItem("theme", isDark.value ? "dark" : "light")
     toggleDarkMode(isDark.value)
@@ -88,7 +90,7 @@ const handleCommand = (command) => {
 defineEmits(["toggle-sidebar"])
 
 const route = useRoute()
-const pageTitle = computed(() => route.meta.title || "Dashboard")
+const pageTitle = computed(() => route.meta.title || "")
 </script>
 
 <style scoped>

@@ -30,6 +30,7 @@ export default defineConfig({
       '@plugins': fileURLToPath(new URL('./src/plugins', import.meta.url)),
       '@store': fileURLToPath(new URL('./src/store', import.meta.url)),
       '@router': fileURLToPath(new URL('./src/router', import.meta.url)),
+      '@config': fileURLToPath(new URL('./src/config', import.meta.url)),
     },
   },
   server: {
