@@ -10,6 +10,9 @@
       </el-header>
 
       <el-main>
+        <div class="breadcrumb-container" v-if="isBreadcrumbEnabled">
+          <Breadcrumb />
+        </div>
         <slot />
       </el-main>
     </el-container>
@@ -17,14 +20,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import AppSidebar from '@/components/layout/AppSidebar.vue'
-import AppHeader from '@/components/layout/AppHeader.vue'
+import { ref, computed } from "vue"
+import AppSidebar from "@/components/layout/AppSidebar.vue"
+import AppHeader from "@/components/layout/AppHeader.vue"
+import Breadcrumb from "@/components/ui/Breadcrumb.vue"
+import features from "@/config/dashboard.config"
 
 const sidebarCollapsed = ref(false)
 const showSidebar = ref(true)
+const isBreadcrumbEnabled = ref(features.config.breadCrumb)
 
-const sidebarWidth = computed(() => (sidebarCollapsed.value ? '64px' : '250px'))
+const sidebarWidth = computed(() => (sidebarCollapsed.value ? "64px" : "250px"))
 
 const toggleSidebar = () => {
   sidebarCollapsed.value = !sidebarCollapsed.value
@@ -51,5 +57,10 @@ const toggleSidebar = () => {
 
 .el-main {
   padding: 20px;
+}
+
+.breadcrumb-container {
+  margin-bottom: 20px;
+  padding: 12px 0;
 }
 </style>

@@ -29,35 +29,74 @@ if (features.modules.dashboard) {
     path: "/dashboard",
     name: "Dashboard",
     component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
-    meta: { requiresAuth: false, layout: "default" },
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
+    },
   })
 
   routes.push({
     path: "/users/list",
     name: "ListaUsuarios",
     component: () => import("@/modules/dashboard/users/pages/UsersPage.vue"),
-    meta: { requiresAuth: false, layout: "default" },
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [
+        { label: "breadcrumb.home", link: "/" },
+        { label: "breadcrumb.dashboard", link: "/dashboard" },
+        { label: "breadcrumb.users" },
+        { label: "breadcrumb.usersList" },
+      ],
+    },
   })
 
   routes.push({
     path: "/users/roles",
     name: "RolesUsuarios",
     component: () => import("@/modules/dashboard/users/pages/PermissionsUserPage.vue"),
-    meta: { requiresAuth: false, layout: "default" },
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [
+        { label: "breadcrumb.home", link: "/" },
+        { label: "breadcrumb.dashboard", link: "/dashboard" },
+        { label: "breadcrumb.users" },
+        { label: "breadcrumb.usersRoles" },
+      ],
+    },
   })
 
   routes.push({
     path: "/settings/profile",
     name: "SettingsProfile",
     component: () => import("@/modules/dashboard/pages/SettingsProfilePage.vue"),
-    meta: { requiresAuth: false, layout: "default" },
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [
+        { label: "breadcrumb.home", link: "/" },
+        { label: "breadcrumb.dashboard", link: "/dashboard" },
+        { label: "breadcrumb.settings", link: "/settings" },
+        { label: "breadcrumb.settingsProfile" },
+      ],
+    },
   })
 
   routes.push({
     path: "/settings",
     name: "Settings",
     component: () => import("@/modules/dashboard/settings/pages/SettingsPage.vue"),
-    meta: { requiresAuth: false, layout: "default" },
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [
+        { label: "breadcrumb.home", link: "/" },
+        { label: "breadcrumb.dashboard", link: "/dashboard" },
+        { label: "breadcrumb.settings" },
+      ],
+    },
   })
 }
 

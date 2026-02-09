@@ -34,7 +34,7 @@
                   :icon="currentLocale === 'es' ? Check : ''"
                   :disabled="currentLocale === 'es'"
                 >
-                  Español
+                  {{ t("settings.spanish") }}
                 </el-dropdown-item>
                 <el-dropdown-item
                   v-if="isi18nEnabled"
@@ -42,7 +42,7 @@
                   :icon="currentLocale === 'en' ? Check : ''"
                   :disabled="currentLocale === 'en'"
                 >
-                  English
+                  {{ t("settings.english") }}
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -68,7 +68,7 @@
                 :icon="currentLocale === 'es' ? Check : ''"
                 :disabled="currentLocale === 'es'"
               >
-                Español
+                {{ t("settings.spanish") }}
               </el-dropdown-item>
               <el-dropdown-item
                 v-if="isi18nEnabled"
@@ -76,7 +76,7 @@
                 :icon="currentLocale === 'en' ? Check : ''"
                 :disabled="currentLocale === 'en'"
               >
-                English
+                {{ t("settings.english") }}
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>

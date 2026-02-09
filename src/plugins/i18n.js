@@ -11,12 +11,25 @@ if (features.i18n) {
     en: enService,
   }
 
+  // Cargar archivos de locales directos (/locales/*.js)
   const locales = import.meta.glob("@/locales/*.js", { eager: true })
   Object.keys(locales).forEach((path) => {
     const locale = path.match(/\/([^/]+)\.js$/)?.[1]
     if (locale) messages[locale] = locales[path].default
   })
 
+  // Cargar archivos de locales en subdirectorios (/locales/*/es.js, /locales/*/en.js)
+  const subLocales = import.meta.glob("@/locales/*/*.js", { eager: true })
+  Object.keys(subLocales).forEach((path) => {
+    const matches = path.match(/locales\/([^/]+)\/([^/]+)\.js$/)
+    if (matches) {
+      const [, category, locale] = matches
+      if (!messages[locale]) messages[locale] = {}
+      messages[locale][category] = subLocales[path].default
+    }
+  })
+
+  // Cargar locales de módulos
   const moduleLocales = import.meta.glob("@/modules/*/locales/*.js", { eager: true })
   Object.keys(moduleLocales).forEach((path) => {
     const matches = path.match(/modules\/([^/]+)\/locales\/([^/]+)\.js$/)

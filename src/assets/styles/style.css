@@ -36,18 +36,63 @@ html.dark {
   --el-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
+html {
+  transition: background-color 0.2s ease-in-out;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--app-bg-primary);
   color: var(--app-text-primary) !important;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
 }
 
-* {
-  transition-property: background-color, border-color, color;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
+body,
+.el-card,
+.el-table,
+.el-button,
+.el-input,
+.el-select,
+.el-menu,
+.el-aside,
+.el-header,
+.el-main,
+.el-dialog,
+.el-drawer,
+.el-dropdown,
+.el-tag,
+.el-pagination {
+  transition:
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+.el-card {
+  box-shadow: var(--el-box-shadow-light);
+}
+
+.el-table {
+  border-radius: 10px;
+}
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin: 0 0 8px 0;
+}
+
+.page-description {
+  font-size: 14px;
+  color: var(--el-text-color-secondary);
+  margin: 0;
+}
+
+.expand-content {
+  padding: 20px;
+  background-color: var(--el-fill-color-light);
 }

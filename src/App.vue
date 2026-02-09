@@ -1,24 +1,28 @@
 <template>
   <Suspense>
     <template #default>
-      <component :is="currentLayout">
+      <component v-if="routerReady && currentLayout" :is="currentLayout">
         <router-view />
       </component>
+      <div v-else class="app-loading">
+        <el-icon class="loading-icon" :size="50">
+          <Loading />
+        </el-icon>
+      </div>
     </template>
     <template #fallback>
       <div class="app-loading">
         <el-icon class="loading-icon" :size="50">
           <Loading />
         </el-icon>
-        <p>Cargando...</p>
       </div>
     </template>
   </Suspense>
 </template>
 
 <script setup>
-import { computed, markRaw } from "vue"
-import { useRoute } from "vue-router"
+import { computed, markRaw, ref, onMounted } from "vue"
+import { useRoute, useRouter } from "vue-router"
 import { Loading } from "@element-plus/icons-vue"
 
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
@@ -27,6 +31,8 @@ import AuthLayout from "@/layouts/AuthLayout.vue"
 import LandingLayout from "@/layouts/LandingLayout.vue"
 
 const route = useRoute()
+const router = useRouter()
+const routerReady = ref(false)
 
 const layouts = {
   default: markRaw(DefaultLayout),
@@ -35,9 +41,17 @@ const layouts = {
   landing: markRaw(LandingLayout),
 }
 
+onMounted(async () => {
+  await router.isReady()
+  routerReady.value = true
+})
+
 const currentLayout = computed(() => {
-  const layoutName = route.meta.layout || "landing" // Cambiado de 'default' a 'landing'
-  return layouts[layoutName] || layouts.landing // Fallback a landing
+  if (!routerReady.value || !route.meta.layout) {
+    return null
+  }
+  const layoutName = route.meta.layout
+  return layouts[layoutName] || layouts.default
 })
 </script>
 

@@ -1,0 +1,16 @@
+export default {
+  home: "Inicio",
+  dashboard: "Dashboard",
+  users: "Usuarios",
+  usersList: "Lista de Usuarios",
+  usersRoles: "Roles y Permisos",
+  products: "Productos",
+  productsList: "Lista de Productos",
+  productsCategories: "Categorías",
+  productsInventory: "Inventario",
+  content: "Contenido",
+  contentPages: "Páginas",
+  contentBlog: "Blog",
+  settings: "Configuración",
+  settingsProfile: "Perfil",
+}

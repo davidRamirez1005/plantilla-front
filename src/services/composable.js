@@ -1,18 +1,18 @@
-import { ref } from 'vue'
-import { ElNotification, ElLoading } from 'element-plus'
-import { messageConfig, notificationConfig } from '@/plugins/element-plus'
+import { ref } from "vue"
+import { ElNotification, ElLoading } from "element-plus"
+import { messageConfig, notificationConfig } from "@/plugins/element-plus"
 
-import esLocale from '@/locales/service/es'
-import enLocale from '@/locales/service/en'
+import esLocale from "@/locales/service/es"
+import enLocale from "@/locales/service/en"
 
 const getLocale = () => {
-  const lang = localStorage.getItem('locale') || 'es'
-  return lang === 'en' ? enLocale : esLocale
+  const lang = localStorage.getItem("locale") || "es"
+  return lang === "en" ? enLocale : esLocale
 }
 
 const t = (path) => {
   const locale = getLocale()
-  const keys = path.split('.')
+  const keys = path.split(".")
   let value = locale
 
   for (const key of keys) {
@@ -27,7 +27,7 @@ const t = (path) => {
  * Composable para manejo de notificaciones
  */
 export function useNotification() {
-  const notify = (title, message, type = 'info') => {
+  const notify = (title, message, type = "info") => {
     ElNotification({
       ...notificationConfig,
       title,
@@ -39,27 +39,27 @@ export function useNotification() {
   return {
     success: (title = null, message = null) =>
       notify(
-        title || t('notifications.success.title'),
-        message || t('notifications.success.default'),
-        'success'
+        title || t("notifications.success.title"),
+        message || t("notifications.success.default"),
+        "success"
       ),
     error: (title = null, message = null) =>
       notify(
-        title || t('notifications.error.title'),
-        message || t('notifications.error.default'),
-        'error'
+        title || t("notifications.error.title"),
+        message || t("notifications.error.default"),
+        "error"
       ),
     warning: (title = null, message = null) =>
       notify(
-        title || t('notifications.warning.title'),
-        message || t('notifications.warning.default'),
-        'warning'
+        title || t("notifications.warning.title"),
+        message || t("notifications.warning.default"),
+        "warning"
       ),
     info: (title = null, message = null) =>
       notify(
-        title || t('notifications.info.title'),
-        message || t('notifications.info.default'),
-        'info'
+        title || t("notifications.info.title"),
+        message || t("notifications.info.default"),
+        "info"
       ),
     notify,
   }
@@ -80,16 +80,16 @@ export function useLoading() {
     loading.value = true
 
     const loadingText = text
-      ? text.includes('.')
-        ? t(`loading.${text}`) || t('loading.default')
+      ? text.includes(".")
+        ? t(`loading.${text}`) || t("loading.default")
         : text
-      : t('loading.default')
+      : t("loading.default")
 
     loadingInstance = ElLoading.service({
       lock: true,
       text: loadingText,
       fullscreen,
-      background: 'rgba(0, 0, 0, 0.7)',
+      background: "rgba(0, 0, 0, 0.7)",
     })
   }
 
@@ -106,7 +106,7 @@ export function useLoading() {
    */
   const withLoading = async (
     fn,
-    loadingText = 'processing',
+    loadingText = "processing",
     successMsg = null,
     errorMsg = null
   ) => {
@@ -122,7 +122,7 @@ export function useLoading() {
 
       return result
     } catch (err) {
-      error(null, errorMsg || t('notifications.error.default'))
+      error(null, errorMsg || t("notifications.error.default"))
       throw err
     } finally {
       stopLoading()
@@ -134,9 +134,22 @@ export function useLoading() {
     startLoading,
     stopLoading,
     withLoading,
-    startSaving: () => startLoading('saving'),
-    startDeleting: () => startLoading('deleting'),
-    startUpdating: () => startLoading('updating'),
-    startLoadingData: () => startLoading('loading_data'),
+    startSaving: () => startLoading("saving"),
+    startDeleting: () => startLoading("deleting"),
+    startUpdating: () => startLoading("updating"),
+    startLoadingData: () => startLoading("loading_data"),
   }
+}
+
+/**
+ * Formateo de fechas
+ */
+export function formatDate(date, options = {}) {
+  const defaultOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+  const formatOptions = { ...defaultOptions, ...options }
+  return new Date(date).toLocaleDateString(getLocale().code, formatOptions)
 }
