@@ -2,9 +2,9 @@
   <div class="common-layout">
     <el-container>
       <el-container>
-        <el-aside width="200px"><p>Aside</p></el-aside>
+        <!-- <el-aside width="200px"><p>Aside</p></el-aside>   -->
         <el-container>
-          <el-main><MainSection /></el-main>
+          <MainSection />
           <el-footer><p>Footer</p></el-footer>
         </el-container>
       </el-container>
@@ -25,5 +25,4 @@ import MainSection from "../components/MainSection.vue"
   background-color: var(--app-bg-secondary);
   text-align: center;
 }
-
 </style>
