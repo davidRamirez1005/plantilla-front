@@ -100,4 +100,18 @@ if (features.modules.dashboard) {
   })
 }
 
+if (features.modules.eCommerce) {
+    routes.push({
+      path: "/roluna",
+      name: "Roluna",
+      component: () => import("@/modules/eCommerce/pages/HomePage.vue"),
+      meta: {
+        requiresAuth: false,
+        layout: "ecommerce",
+        // breadcrumb: [
+
+        // ],
+      },
+    })
+}
 export default routes

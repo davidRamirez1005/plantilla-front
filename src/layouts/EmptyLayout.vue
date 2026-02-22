@@ -6,7 +6,6 @@
 
 <script setup>
 // Layout completamente vacío, útil para:
-// - Landing pages personalizadas
 // - Páginas de error (404, 500)
 // - Páginas de mantenimiento
 </script>

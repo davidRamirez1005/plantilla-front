@@ -19,6 +19,8 @@
   --active-text-color: #3b82f6;
   --text-color: #bfcbd9;
   --background-color-sidebar: #304156;
+  --app-primary-color: #6da2f7;
+  --app-secondary-color: #9dbcff;
 }
 
 html.dark {
