@@ -4,8 +4,8 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/modules/home/pages/HomePage.vue"),
-    meta: { layout: "landing" },
+    component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+    meta: { layout: "default" },
   },
   {
     path: "/:pathMatch(.*)*",
@@ -25,16 +25,16 @@ if (features.auth) {
 }
 
 if (features.modules.dashboard) {
-  routes.push({
-    path: "/dashboard",
-    name: "Dashboard",
-    component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
-    meta: {
-      requiresAuth: false,
-      layout: "default",
-      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
-    },
-  })
+  // routes.push({
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+  //   meta: {
+  //     requiresAuth: false,
+  //     layout: "default",
+  //     breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
+  //   },
+  // })
 
   routes.push({
     path: "/users/list",
@@ -101,17 +101,17 @@ if (features.modules.dashboard) {
 }
 
 if (features.modules.eCommerce) {
-    routes.push({
-      path: "/roluna",
-      name: "Roluna",
-      component: () => import("@/modules/eCommerce/pages/HomePage.vue"),
-      meta: {
-        requiresAuth: false,
-        layout: "ecommerce",
-        // breadcrumb: [
+  routes.push({
+    path: "/roluna",
+    name: "Roluna",
+    component: () => import("@/modules/eCommerce/pages/HomePage.vue"),
+    meta: {
+      requiresAuth: false,
+      layout: "ecommerce",
+      // breadcrumb: [
 
-        // ],
-      },
-    })
+      // ],
+    },
+  })
 }
 export default routes
