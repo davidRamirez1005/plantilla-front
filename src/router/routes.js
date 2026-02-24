@@ -4,8 +4,8 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/modules/home/pages/HomePage.vue"),
-    meta: { layout: "landing" },
+    component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+    meta: { layout: "default" },
   },
   {
     path: "/:pathMatch(.*)*",
@@ -26,13 +26,13 @@ if (features.auth) {
 
 if (features.modules.dashboard) {
   routes.push({
-    path: "/dashboard",
-    name: "Dashboard",
-    component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+    path: "/reservations",
+    name: "Reservar",
+    component: () => import("@/modules/dashboard/pages/ReservationsPage.vue"),
     meta: {
       requiresAuth: false,
       layout: "default",
-      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
+      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.reservations" }],
     },
   })
 
@@ -53,65 +53,36 @@ if (features.modules.dashboard) {
   })
 
   routes.push({
-    path: "/users/roles",
-    name: "RolesUsuarios",
-    component: () => import("@/modules/dashboard/users/pages/PermissionsUserPage.vue"),
+    path: "/library/reservations",
+    name: "Reservas",
+    component: () => import("@/modules/dashboard/library/pages/ReservationsPage.vue"),
     meta: {
       requiresAuth: false,
       layout: "default",
       breadcrumb: [
         { label: "breadcrumb.home", link: "/" },
         { label: "breadcrumb.dashboard", link: "/dashboard" },
-        { label: "breadcrumb.users" },
-        { label: "breadcrumb.usersRoles" },
+        { label: "breadcrumb.library" },
+        { label: "breadcrumb.reservations" },
       ],
     },
   })
 
   routes.push({
-    path: "/settings/profile",
-    name: "SettingsProfile",
-    component: () => import("@/modules/dashboard/pages/SettingsProfilePage.vue"),
+    path: "/library/inventory",
+    name: "Inventario",
+    component: () => import("@/modules/dashboard/library/pages/InventoryPage.vue"),
     meta: {
       requiresAuth: false,
       layout: "default",
       breadcrumb: [
         { label: "breadcrumb.home", link: "/" },
         { label: "breadcrumb.dashboard", link: "/dashboard" },
-        { label: "breadcrumb.settings", link: "/settings" },
-        { label: "breadcrumb.settingsProfile" },
-      ],
-    },
-  })
-
-  routes.push({
-    path: "/settings",
-    name: "Settings",
-    component: () => import("@/modules/dashboard/settings/pages/SettingsPage.vue"),
-    meta: {
-      requiresAuth: false,
-      layout: "default",
-      breadcrumb: [
-        { label: "breadcrumb.home", link: "/" },
-        { label: "breadcrumb.dashboard", link: "/dashboard" },
-        { label: "breadcrumb.settings" },
+        { label: "breadcrumb.library" },
+        { label: "breadcrumb.inventory" },
       ],
     },
   })
 }
 
-if (features.modules.eCommerce) {
-    routes.push({
-      path: "/roluna",
-      name: "Roluna",
-      component: () => import("@/modules/eCommerce/pages/HomePage.vue"),
-      meta: {
-        requiresAuth: false,
-        layout: "ecommerce",
-        // breadcrumb: [
-
-        // ],
-      },
-    })
-}
 export default routes

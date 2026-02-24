@@ -151,5 +151,14 @@ export function formatDate(date, options = {}) {
     day: "numeric",
   }
   const formatOptions = { ...defaultOptions, ...options }
-  return new Date(date).toLocaleDateString(getLocale().code, formatOptions)
+
+  let dateObj
+  if (typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [year, month, day] = date.split("-").map(Number)
+    dateObj = new Date(year, month - 1, day)
+  } else {
+    dateObj = new Date(date)
+  }
+
+  return dateObj.toLocaleDateString(getLocale().code, formatOptions)
 }

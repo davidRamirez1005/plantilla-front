@@ -1,4 +1,4 @@
-import { HomeFilled, User, ShoppingCart, Setting, Document } from "@element-plus/icons-vue"
+import { Calendar, User, ShoppingCart } from "@element-plus/icons-vue"
 import features from "@config/dashboard.config.js"
 
 /**
@@ -13,9 +13,9 @@ import features from "@config/dashboard.config.js"
  */
 const menuConfig = [
   {
-    index: "/dashboard",
-    label: "Dashboard",
-    icon: HomeFilled,
+    index: "/reservations",
+    label: "Reservar",
+    icon: Calendar,
     visible: () => true,
   },
   {
@@ -28,53 +28,23 @@ const menuConfig = [
         index: "/users/list",
         label: "Lista de Usuarios",
       },
-      {
-        index: "/users/roles",
-        label: "Roles y Permisos",
-      },
     ],
   },
   {
-    index: "/products",
-    label: "Productos",
+    index: "/library",
+    label: "Biblioteca",
     icon: ShoppingCart,
-    visible: () => features.dashboard.sales,
+    visible: () => features.dashboard.management,
     children: [
       {
-        index: "/products/list",
-        label: "Lista de Productos",
+        index: "/library/reservations",
+        label: "Reservas",
       },
       {
-        index: "/products/categories",
-        label: "Categorías",
-      },
-      {
-        index: "/products/inventory",
+        index: "/library/inventory",
         label: "Inventario",
       },
     ],
-  },
-  {
-    index: "/content",
-    label: "Contenido",
-    icon: Document,
-    visible: () => features.dashboard.performance,
-    children: [
-      {
-        index: "/content/pages",
-        label: "Páginas",
-      },
-      {
-        index: "/content/blog",
-        label: "Blog",
-      },
-    ],
-  },
-  {
-    index: "/settings",
-    label: "Configuración",
-    icon: Setting,
-    visible: () => features.dashboard.settings,
   },
 ]
 

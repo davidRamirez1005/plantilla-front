@@ -3,9 +3,7 @@
     <el-card>
       <div class="page-header">
         <h1>Gestión de Usuarios</h1>
-        <p class="page-description">
-          Administra los usuarios del sistema con filtros avanzados, ordenamiento y más
-        </p>
+        <p class="page-description">Administra los usuarios del sistema</p>
       </div>
       <Datatable
         ref="datatableRef"
@@ -38,7 +36,7 @@
           <el-button :icon="Delete" :disabled="selectedRows.length === 0" @click="handleBulkDelete">
             Eliminar Seleccionados ({{ selectedRows.length }})
           </el-button>
-          <el-button :icon="Refresh" @click="refreshData"> Actualizar </el-button>
+          <!-- <el-button :icon="Refresh" @click="refreshData"> Actualizar </el-button> -->
         </template>
 
         <!-- Contenido expandible -->
@@ -146,6 +144,9 @@
         <el-form-item label="Departamento">
           <el-input v-model="userForm.department" placeholder="Ingrese el departamento" />
         </el-form-item>
+        <el-form-item label="Dirección">
+          <el-input v-model="userForm.address" placeholder="Ingrese la dirección" />
+        </el-form-item>
         <el-form-item label="Estado">
           <el-switch
             v-model="userForm.status"
@@ -167,136 +168,26 @@ import { Plus, Edit, Delete, Refresh } from "@element-plus/icons-vue"
 import Datatable from "@/components/ui/Datatable.vue"
 import DrawerCustom from "@/components/ui/DrawerCustom.vue"
 import { formatDate } from "@/services/composable"
+import { useUsersStore } from "../store/usersStore"
 
-// Referencias
+const usersStore = useUsersStore()
 const datatableRef = ref(null)
-
-// Estado
 const selectedRows = ref([])
 const drawerVisible = ref(false)
 const isEditing = ref(false)
 const currentPage = ref(1)
 const pageSize = ref(10)
 
-// Datos de ejemplo
-const allUsers = ref([
-  {
-    id: 1,
-    name: "Juan Pérez",
-    email: "juan.perez@example.com",
-    phone: "+34 600 123 456",
-    role: "Admin",
-    department: "Tecnología",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=1",
-    address: "Calle Principal 123, Madrid",
-    createdAt: "2024-01-15",
-    lastActivity: "2024-02-08",
-  },
-  {
-    id: 2,
-    name: "María García",
-    email: "maria.garcia@example.com",
-    phone: "+34 600 234 567",
-    role: "Editor",
-    department: "Marketing",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=2",
-    address: "Avenida Central 456, Barcelona",
-    createdAt: "2024-01-20",
-    lastActivity: "2024-02-07",
-  },
-  {
-    id: 3,
-    name: "Carlos López",
-    email: "carlos.lopez@example.com",
-    phone: "+34 600 345 678",
-    role: "Usuario",
-    department: "Ventas",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=3",
-    address: "Plaza Mayor 789, Valencia",
-    createdAt: "2024-02-01",
-    lastActivity: "2024-02-06",
-  },
-  {
-    id: 4,
-    name: "Ana Martínez",
-    email: "ana.martinez@example.com",
-    phone: "+34 600 456 789",
-    role: "Editor",
-    department: "Diseño",
-    status: "inactive",
-    avatar: "https://i.pravatar.cc/150?img=4",
-    address: "Calle Nueva 321, Sevilla",
-    createdAt: "2024-02-05",
-    lastActivity: "2024-02-05",
-  },
-  {
-    id: 5,
-    name: "Pedro Sánchez",
-    email: "pedro.sanchez@example.com",
-    phone: "+34 600 567 890",
-    role: "Usuario",
-    department: "Operaciones",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=5",
-    address: "Paseo Marítimo 654, Málaga",
-    createdAt: "2024-01-10",
-    lastActivity: "2024-02-08",
-  },
-  {
-    id: 6,
-    name: "Laura Fernández",
-    email: "laura.fernandez@example.com",
-    phone: "+34 600 678 901",
-    role: "Admin",
-    department: "Recursos Humanos",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=6",
-    address: "Calle Sol 987, Bilbao",
-    createdAt: "2024-01-25",
-    lastActivity: "2024-02-08",
-  },
-  {
-    id: 7,
-    name: "Miguel Ruiz",
-    email: "miguel.ruiz@example.com",
-    phone: "+34 600 789 012",
-    role: "Invitado",
-    department: "Externo",
-    status: "active",
-    avatar: "https://i.pravatar.cc/150?img=7",
-    address: "Plaza España 147, Zaragoza",
-    createdAt: "2024-02-03",
-    lastActivity: "2024-02-07",
-  },
-  {
-    id: 8,
-    name: "Isabel Torres",
-    email: "isabel.torres@example.com",
-    phone: "+34 600 890 123",
-    role: "Editor",
-    department: "Contenido",
-    status: "inactive",
-    avatar: "https://i.pravatar.cc/150?img=8",
-    address: "Avenida Libertad 258, Murcia",
-    createdAt: "2024-01-18",
-    lastActivity: "2024-01-30",
-  },
-])
-
-// Formulario de usuario
 const userForm = ref({
   name: "",
   email: "",
   phone: "",
   role: "Usuario",
   department: "",
+  address: "",
   status: "active",
 })
 
-// Configuración de columnas
 const columns = ref([
   {
     prop: "id",
@@ -361,14 +252,13 @@ const columns = ref([
   },
 ])
 
-// Computed
 const tableData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
   const end = start + pageSize.value
-  return allUsers.value.slice(start, end)
+  return usersStore.users.slice(start, end)
 })
 
-const totalRecords = computed(() => allUsers.value.length)
+const totalRecords = computed(() => usersStore.users.length)
 
 const getStatusType = (status) => {
   if (!status) return "info"
@@ -407,13 +297,11 @@ const handleSortChange = ({ prop, order }) => {
 
 const handleCurrentPageChange = (page) => {
   currentPage.value = page
-  console.log("Página actual:", page)
 }
 
 const handleSizeChange = (size) => {
   pageSize.value = size
   currentPage.value = 1
-  console.log("Tamaño de página:", size)
 }
 
 const handleAddUser = () => {
@@ -424,6 +312,7 @@ const handleAddUser = () => {
     phone: "",
     role: "Usuario",
     department: "",
+    address: "",
     status: "active",
   }
   drawerVisible.value = true
@@ -446,9 +335,7 @@ const handleDelete = (row) => {
     }
   )
     .then(() => {
-      const index = allUsers.value.findIndex((u) => u.id === row.id)
-      if (index !== -1) {
-        allUsers.value.splice(index, 1)
+      if (usersStore.deleteUser(row.id)) {
         ElMessage.success("Usuario eliminado correctamente")
       }
     })
@@ -469,7 +356,7 @@ const handleBulkDelete = () => {
   )
     .then(() => {
       const idsToDelete = selectedRows.value.map((row) => row.id)
-      allUsers.value = allUsers.value.filter((u) => !idsToDelete.includes(u.id))
+      usersStore.deleteMultipleUsers(idsToDelete)
       datatableRef.value?.clearSelection()
       ElMessage.success(`${idsToDelete.length} usuario(s) eliminado(s) correctamente`)
     })
@@ -480,21 +367,11 @@ const handleBulkDelete = () => {
 
 const handleSave = () => {
   if (isEditing.value) {
-    const index = allUsers.value.findIndex((u) => u.id === userForm.value.id)
-    if (index !== -1) {
-      allUsers.value[index] = { ...userForm.value }
+    if (usersStore.updateUser(userForm.value)) {
       ElMessage.success("Usuario actualizado correctamente")
     }
   } else {
-    const newUser = {
-      ...userForm.value,
-      id: allUsers.value.length + 1,
-      avatar: `https://i.pravatar.cc/150?img=${allUsers.value.length + 1}`,
-      address: "Sin dirección",
-      createdAt: new Date().toISOString().split("T")[0],
-      lastActivity: new Date().toISOString().split("T")[0],
-    }
-    allUsers.value.push(newUser)
+    usersStore.addUser(userForm.value)
     ElMessage.success("Usuario agregado correctamente")
   }
   drawerVisible.value = false

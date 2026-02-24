@@ -12,8 +12,8 @@ export default {
 
   // Módulos opcionales
   modules: {
-    eCommerce: true,
+    eCommerce: false,
     dashboard: true,
-    landing: true,
+    landing: false,
   },
 }

@@ -13,23 +13,8 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="profile">{{ t("settings.profile") }}</el-dropdown-item>
             <el-dropdown-item divided command="toggleTheme" :icon="isDark ? Sunny : Moon">
               {{ isDark ? t("settings.lightMode") : t("settings.darkMode") }}
-            </el-dropdown-item>
-            <el-dropdown-item
-              command="es"
-              :icon="currentLocale === 'es' ? Check : ''"
-              :disabled="currentLocale === 'es'"
-            >
-              {{ t("settings.spanish") }}
-            </el-dropdown-item>
-            <el-dropdown-item
-              command="en"
-              :icon="currentLocale === 'en' ? Check : ''"
-              :disabled="currentLocale === 'en'"
-            >
-              {{ t("settings.english") }}
             </el-dropdown-item>
             <el-dropdown-item divided>{{ t("settings.logout") }}</el-dropdown-item>
           </el-dropdown-menu>

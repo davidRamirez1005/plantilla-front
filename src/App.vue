@@ -28,8 +28,6 @@ import { Loading } from "@element-plus/icons-vue"
 import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import EmptyLayout from "@/layouts/EmptyLayout.vue"
 import AuthLayout from "@/layouts/AuthLayout.vue"
-import LandingLayout from "@/layouts/LandingLayout.vue"
-import EcommerceLayout from "@/layouts/EcommerceLayout.vue"
 
 const route = useRoute()
 const router = useRouter()
@@ -39,8 +37,6 @@ const layouts = {
   default: markRaw(DefaultLayout),
   empty: markRaw(EmptyLayout),
   auth: markRaw(AuthLayout),
-  landing: markRaw(LandingLayout),
-  ecommerce: markRaw(EcommerceLayout),
 }
 
 onMounted(async () => {
