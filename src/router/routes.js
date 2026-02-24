@@ -25,16 +25,17 @@ if (features.auth) {
 }
 
 if (features.modules.dashboard) {
+
   routes.push({
-    path: "/reservations",
-    name: "Reservar",
-    component: () => import("@/modules/dashboard/pages/ReservationsPage.vue"),
-    meta: {
+    path: "/dashboard",
+     name: "Dashboard",
+     component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+     meta: {
       requiresAuth: false,
-      layout: "default",
-      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.reservations" }],
-    },
-  })
+       layout: "default",
+       breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
+     },
+   })
 
   routes.push({
     path: "/users/list",
@@ -85,4 +86,18 @@ if (features.modules.dashboard) {
   })
 }
 
+if (features.modules.eCommerce) {
+  routes.push({
+    path: "/roluna",
+    name: "Roluna",
+    component: () => import("@/modules/eCommerce/pages/HomePage.vue"),
+    meta: {
+      requiresAuth: false,
+      layout: "ecommerce",
+      // breadcrumb: [
+
+      // ],
+    },
+  })
+}
 export default routes
