@@ -25,17 +25,16 @@ if (features.auth) {
 }
 
 if (features.modules.dashboard) {
-
   routes.push({
     path: "/dashboard",
-     name: "Dashboard",
-     component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
-     meta: {
+    name: "Dashboard",
+    component: () => import("@/modules/dashboard/pages/DashboardPage.vue"),
+    meta: {
       requiresAuth: false,
-       layout: "default",
-       breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
-     },
-   })
+      layout: "default",
+      breadcrumb: [{ label: "breadcrumb.home", link: "/" }, { label: "breadcrumb.dashboard" }],
+    },
+  })
 
   routes.push({
     path: "/users/list",
@@ -54,33 +53,48 @@ if (features.modules.dashboard) {
   })
 
   routes.push({
-    path: "/library/reservations",
-    name: "Reservas",
-    component: () => import("@/modules/dashboard/library/pages/ReservationsPage.vue"),
+    path: "/users/roles",
+    name: "RolesUsuarios",
+    component: () => import("@/modules/dashboard/users/pages/PermissionsUserPage.vue"),
     meta: {
       requiresAuth: false,
       layout: "default",
       breadcrumb: [
         { label: "breadcrumb.home", link: "/" },
         { label: "breadcrumb.dashboard", link: "/dashboard" },
-        { label: "breadcrumb.library" },
-        { label: "breadcrumb.reservations" },
+        { label: "breadcrumb.users" },
+        { label: "breadcrumb.usersRoles" },
       ],
     },
   })
 
   routes.push({
-    path: "/library/inventory",
-    name: "Inventario",
-    component: () => import("@/modules/dashboard/library/pages/InventoryPage.vue"),
+    path: "/settings/profile",
+    name: "SettingsProfile",
+    component: () => import("@/modules/dashboard/pages/SettingsProfilePage.vue"),
     meta: {
       requiresAuth: false,
       layout: "default",
       breadcrumb: [
         { label: "breadcrumb.home", link: "/" },
         { label: "breadcrumb.dashboard", link: "/dashboard" },
-        { label: "breadcrumb.library" },
-        { label: "breadcrumb.inventory" },
+        { label: "breadcrumb.settings", link: "/settings" },
+        { label: "breadcrumb.settingsProfile" },
+      ],
+    },
+  })
+
+  routes.push({
+    path: "/settings",
+    name: "Settings",
+    component: () => import("@/modules/dashboard/settings/pages/SettingsPage.vue"),
+    meta: {
+      requiresAuth: false,
+      layout: "default",
+      breadcrumb: [
+        { label: "breadcrumb.home", link: "/" },
+        { label: "breadcrumb.dashboard", link: "/dashboard" },
+        { label: "breadcrumb.settings" },
       ],
     },
   })

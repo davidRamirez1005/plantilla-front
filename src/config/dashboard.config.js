@@ -1,10 +1,11 @@
-
 export default {
   dashboard: {
     users: true,
-    management: true,
+    sales: true,
+    performance: false,
+    settings: true,
   },
   config: {
-    breadCrumb: false,
+    breadCrumb: true,
   },
 }
